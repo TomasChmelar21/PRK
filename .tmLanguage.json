@@ -1,0 +1,14 @@
+{
+  "fileTypes": ["txt", "myext"],
+  "name": "My Custom Language",
+  "patterns": [
+    {
+      "name": "keyword.control.myLanguage",
+      "match": "\\b(if|else|while|return)\\b"
+    },
+    {
+      "name": "string.quoted.double.myLanguage",
+      "match": "\"([^\"\\\\]|\\\\.)*\""
+    }
+  ]
+}

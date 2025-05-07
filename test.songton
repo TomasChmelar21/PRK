@@ -1,0 +1,13 @@
+kolikmamjestelet vek = 45;
+kdovijestli (vek < 50) {
+    tisk "Je ti míň než 50.";
+} jinak {
+    tisk "Je ti 50 nebo víc.";
+}
+
+kolikmamjestelet vek = 55;
+kdovijestli (vek < 50) {
+    tisk "Je ti míň než 50.";
+} jinak {
+    tisk "Je ti 50 nebo víc.";
+}

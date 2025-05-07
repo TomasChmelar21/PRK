@@ -1,0 +1,9 @@
+kolikmamjestelet a = 5;
+
+jetoparada b = true;
+
+kolikmamjestelet x = 10 + 2 * 3;
+
+kdovijestli (x > 5) {
+    kolikmamjestelet y = 100;
+}
