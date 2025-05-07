@@ -1,0 +1,15 @@
+jetoparada x = true;
+jetoparada y = false;
+
+kolikmamjestelet vysledek = x spolu y;
+tisk vysledek;
+
+vysledek = x janeboty y;
+tisk vysledek;
+
+vysledek = jsempozitivni y;
+
+tisk vysledek;
+
+vysledek = jsempozitivni (x spolu y);
+tisk vysledek;

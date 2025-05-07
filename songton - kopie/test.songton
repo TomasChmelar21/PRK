@@ -1,0 +1,8 @@
+kolikmamjestelet vek = 45;
+tisk "Aktuální věk:";
+tisk vek;
+
+bezdal (vek < 50) {
+  tisk "Jsem ještě mladý!";
+  vek = vek + 1;
+}

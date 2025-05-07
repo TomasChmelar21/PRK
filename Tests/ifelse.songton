@@ -1,0 +1,18 @@
+kolikmamjestelet vek = 17;
+
+
+kdovijestli (vek >= 18) {
+    tisk "Jsi dospělý.";
+}
+jinak {
+    tisk "Ještě nejsi dospělý.";
+}
+
+kolikmamjestelet vek = 25;
+
+kdovijestli (vek >= 18) {
+    tisk "Jsi dospělý.";
+}
+jinak {
+    tisk "Ještě nejsi dospělý.";
+}

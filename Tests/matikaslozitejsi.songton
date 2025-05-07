@@ -1,0 +1,12 @@
+kolikmamjestelet a = 2;
+kolikmamjestelet b = 3;
+kolikmamjestelet c = 4;
+
+kolikmamjestelet vysledek = a + b * c;
+tisk vysledek;
+
+vysledek = (a + b) * c;
+tisk vysledek;
+
+vysledek = (a + b * c) / (b + c);
+tisk vysledek;

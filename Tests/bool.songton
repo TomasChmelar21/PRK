@@ -1,0 +1,8 @@
+jetoparada hladovy = true;
+
+kdovijestli (hladovy) {
+    tisk "Běž se najíst.";
+}
+jinak {
+    tisk "Už jsi papal.";
+}

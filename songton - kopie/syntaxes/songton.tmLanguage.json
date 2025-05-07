@@ -1,0 +1,35 @@
+{
+    "scopeName": "source.songton",
+    "fileTypes": ["songton"],
+    "name": "Songton",
+    "patterns": [
+      {
+        "name": "keyword.control.songton",
+        "match": "\\b(kolikmamjestelet|jetoparada|kdovijestli|bezdal|tisk|jinak|nenene|cislicko)\\b"
+      },
+      {
+        "name": "string.quoted.double.songton",
+        "begin": "\"",
+        "end": "\"",
+        "patterns": [
+          {
+            "match": "\\\\.",
+            "name": "constant.character.escape.songton"
+          }
+        ]
+      },
+      {
+        "name": "constant.numeric.songton",
+        "match": "\\b(0x[0-9a-fA-F]+|[0-9]+)\\b"
+      },
+      {
+        "name": "variable.other.songton",
+        "match": "\\b(vek)\\b"
+      },
+      {
+        "name": "keyword.operator.songton",
+        "match": "==|!=|<=|>=|<|>|=|\\+|-|\\*|/|nenene|blizkonas|spolu|janeboty|jsempozitivni"
+      }
+    ]
+  }
+  

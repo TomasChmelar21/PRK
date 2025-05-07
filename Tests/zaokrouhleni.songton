@@ -1,0 +1,5 @@
+cislicko x = 5;
+cislicko y = 3;
+
+cislicko vysledek = blizkonas (x / y);
+tisk vysledek;

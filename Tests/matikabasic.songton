@@ -1,0 +1,15 @@
+kolikmamjestelet a = 10;
+kolikmamjestelet b = 5;
+kolikmamjestelet c = 0;
+
+c = a + b;
+tisk c;
+
+c = a - b;
+tisk c;
+
+c = a * b;
+tisk c;
+
+c = a / b;
+tisk c;

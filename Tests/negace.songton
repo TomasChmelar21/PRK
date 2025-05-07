@@ -1,0 +1,8 @@
+jetoparada odpoved = false;
+
+jetoparada odpovedde = nenene odpoved;
+tisk odpovedde;
+
+kdovijestli (nenene odpoved) {
+    tisk "Odpověď je NE, ale negace ji změnila na ANO.";
+}
