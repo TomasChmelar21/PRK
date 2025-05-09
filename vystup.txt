@@ -1,0 +1,42 @@
+Zadej program:
+LEXER: Vracím ID: a
+Expresion: term = 2
+Deklarace: int a = 2
+LEXER: Vracím ID: b
+Expresion: term = 3
+Deklarace: int b = 3
+LEXER: Vracím ID: c
+Expresion: term = 4
+Deklarace: int c = 4
+LEXER: Vracím ID: vysledek
+LEXER: Vracím ID: a
+Expresion: term = 2
+LEXER: Vracím ID: b
+LEXER: Vracím ID: c
+Expresion: ADD 2 + 12 = 14
+Deklarace: int vysledek = 14
+LEXER: Vracím ID: vysledek
+Tisk: 14
+LEXER: Vracím ID: vysledek
+LEXER: Vracím ID: a
+Expresion: term = 2
+LEXER: Vracím ID: b
+Expresion: ADD 2 + 3 = 5
+LEXER: Vracím ID: c
+Expresion: term = 20
+LEXER: Vracím ID: vysledek
+Tisk: 20
+LEXER: Vracím ID: vysledek
+LEXER: Vracím ID: a
+Expresion: term = 2
+LEXER: Vracím ID: b
+LEXER: Vracím ID: c
+Expresion: ADD 2 + 12 = 14
+LEXER: Vracím ID: b
+Expresion: term = 3
+LEXER: Vracím ID: c
+Expresion: ADD 3 + 4 = 7
+Expresion: term = 2
+LEXER: Vracím ID: vysledek
+Tisk: 2
+Parsing was successful!

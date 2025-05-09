@@ -620,11 +620,11 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   141,   141,   144,   146,   150,   151,   152,   153,   154,
-     170,   177,   187,   197,   204,   221,   226,   221,   239,   241,
-     246,   256,   257,   258,   259,   260,   261,   262,   263,   264,
-     265,   266,   267,   274,   275,   276,   287,   288,   289,   290,
-     291,   311,   312,   313,   314
+       0,   137,   137,   140,   141,   145,   146,   147,   148,   149,
+     164,   171,   181,   191,   198,   215,   220,   215,   232,   233,
+     238,   248,   249,   250,   251,   252,   253,   254,   255,   256,
+     257,   258,   259,   266,   267,   268,   279,   280,   281,   282,
+     283,   302,   303,   304,   305
 };
 #endif
 
@@ -1255,10 +1255,9 @@ yyreduce:
   switch (yyn)
     {
   case 9: /* statement: ID ASSIGN expression SEMI  */
-#line 154 "parser.y"
+#line 149 "parser.y"
                                 {
     if (currentExec()) {
-        // Dynamicky zjisti typ podle předchozí deklarace
         for (int i = 0; i < varCount; i++) {
             if (strcmp(varTable[i].name, (yyvsp[-3].strVal)) == 0) {
                 setVariable((yyvsp[-3].strVal), (yyvsp[-1].intVal), varTable[i].type);
@@ -1267,55 +1266,55 @@ yyreduce:
         }
     }
 }
-#line 1271 "parser.tab.c"
+#line 1270 "parser.tab.c"
     break;
 
   case 10: /* varDecl: KW_INT ID ASSIGN expression  */
-#line 170 "parser.y"
+#line 164 "parser.y"
                                  {
         if (currentExec()) {
             setVariable((yyvsp[-2].strVal), (yyvsp[0].intVal), TYPE_INT);
             printf("Deklarace: int %s = %d\n", (yyvsp[-2].strVal), (yyvsp[0].intVal));
         }
     }
-#line 1282 "parser.tab.c"
+#line 1281 "parser.tab.c"
     break;
 
   case 11: /* varDecl: KW_BOOLEAN ID ASSIGN expression  */
-#line 177 "parser.y"
+#line 171 "parser.y"
                                       {
         if (currentExec()) {
             setVariable((yyvsp[-2].strVal), (yyvsp[0].intVal), TYPE_BOOL);
             printf("Deklarace: bool %s = %s\n", (yyvsp[-2].strVal), (yyvsp[0].intVal) ? "true" : "false");
         }
     }
-#line 1293 "parser.tab.c"
+#line 1292 "parser.tab.c"
     break;
 
   case 12: /* varDecl: KW_BOOLEAN ID ASSIGN BOOLEAN  */
-#line 187 "parser.y"
+#line 181 "parser.y"
                                    {
     if (currentExec()) {
         setVariable((yyvsp[-2].strVal), (yyvsp[0].booleanVal), TYPE_BOOL);
         printf("Deklarace: bool %s = %s\n", (yyvsp[-2].strVal), (yyvsp[0].booleanVal) ? "true" : "false");
     }
 }
-#line 1304 "parser.tab.c"
+#line 1303 "parser.tab.c"
     break;
 
   case 13: /* printStatement: KW_PRINT STRING  */
-#line 197 "parser.y"
+#line 191 "parser.y"
                     {
     if (currentExec()) {
         printf("Tisk: %s\n", (yyvsp[0].strVal));
         free((yyvsp[0].strVal));
     }
 }
-#line 1315 "parser.tab.c"
+#line 1314 "parser.tab.c"
     break;
 
   case 14: /* printStatement: KW_PRINT ID  */
-#line 204 "parser.y"
+#line 198 "parser.y"
                 {
     for (int i = 0; i < varCount; i++) {
         if (strcmp(varTable[i].name, (yyvsp[0].strVal)) == 0) {
@@ -1327,129 +1326,128 @@ yyreduce:
         }
     }
 }
-#line 1331 "parser.tab.c"
+#line 1330 "parser.tab.c"
     break;
 
   case 15: /* $@1: %empty  */
-#line 221 "parser.y"
+#line 215 "parser.y"
                                    {
         pushExec((yyvsp[-1].intVal));
     }
-#line 1339 "parser.tab.c"
+#line 1338 "parser.tab.c"
     break;
 
   case 16: /* $@2: %empty  */
-#line 226 "parser.y"
+#line 220 "parser.y"
            {
         bool thenExecuted = currentExec();
         popExec();
 
-        // Přepneme kontext na opačnou podmínku pro else
         pushExec(!thenExecuted);
     }
-#line 1351 "parser.tab.c"
+#line 1349 "parser.tab.c"
     break;
 
   case 17: /* ifStatement: KW_IF LPAREN expression RPAREN $@1 LBRACE statements RBRACE $@2 elseClause  */
-#line 234 "parser.y"
+#line 227 "parser.y"
     {
         popExec();
     }
-#line 1359 "parser.tab.c"
+#line 1357 "parser.tab.c"
     break;
 
   case 20: /* whileStatement: KW_WHILE LPAREN expression RPAREN LBRACE statements RBRACE  */
-#line 246 "parser.y"
+#line 238 "parser.y"
                                                                {
         while ((yyvsp[-4].intVal)) {
-            executeStatements(); // ručně dopsaná funkce, nebo vyvolání AST
+            executeStatements();
             (yyvsp[-4].intVal) = getIntVariable("vek") < 50;
 
         }
     }
-#line 1371 "parser.tab.c"
+#line 1369 "parser.tab.c"
     break;
 
   case 21: /* expression: term  */
-#line 256 "parser.y"
+#line 248 "parser.y"
            { printf("Expresion: term = %d\n", (yyvsp[0].intVal)); }
-#line 1377 "parser.tab.c"
+#line 1375 "parser.tab.c"
     break;
 
   case 22: /* expression: expression ADD term  */
-#line 257 "parser.y"
+#line 249 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) + (yyvsp[0].intVal); printf("Expresion: ADD %d + %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1383 "parser.tab.c"
+#line 1381 "parser.tab.c"
     break;
 
   case 23: /* expression: expression SUB term  */
-#line 258 "parser.y"
+#line 250 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) - (yyvsp[0].intVal); printf("Expresion: SUB %d - %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1389 "parser.tab.c"
+#line 1387 "parser.tab.c"
     break;
 
   case 24: /* expression: expression AND term  */
-#line 259 "parser.y"
+#line 251 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) && (yyvsp[0].intVal); printf("Expresion: AND %d && %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1395 "parser.tab.c"
+#line 1393 "parser.tab.c"
     break;
 
   case 25: /* expression: expression OR term  */
-#line 260 "parser.y"
+#line 252 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) || (yyvsp[0].intVal); printf("Expresion: OR %d || %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1401 "parser.tab.c"
+#line 1399 "parser.tab.c"
     break;
 
   case 26: /* expression: expression EQ term  */
-#line 261 "parser.y"
+#line 253 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) == (yyvsp[0].intVal); printf("Expresion: EQ %d == %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1407 "parser.tab.c"
+#line 1405 "parser.tab.c"
     break;
 
   case 27: /* expression: expression NEQ term  */
-#line 262 "parser.y"
+#line 254 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) != (yyvsp[0].intVal); printf("Expresion: NEQ %d != %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1413 "parser.tab.c"
+#line 1411 "parser.tab.c"
     break;
 
   case 28: /* expression: expression LT term  */
-#line 263 "parser.y"
+#line 255 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) <  (yyvsp[0].intVal); printf("Expresion: LT %d < %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1419 "parser.tab.c"
+#line 1417 "parser.tab.c"
     break;
 
   case 29: /* expression: expression LE term  */
-#line 264 "parser.y"
+#line 256 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) <= (yyvsp[0].intVal); printf("Expresion: LE %d <= %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1425 "parser.tab.c"
+#line 1423 "parser.tab.c"
     break;
 
   case 30: /* expression: expression GT term  */
-#line 265 "parser.y"
+#line 257 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) >  (yyvsp[0].intVal); printf("Expresion: GT %d > %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1431 "parser.tab.c"
+#line 1429 "parser.tab.c"
     break;
 
   case 31: /* expression: expression GE term  */
-#line 266 "parser.y"
+#line 258 "parser.y"
                           { (yyval.intVal) = (yyvsp[-2].intVal) >= (yyvsp[0].intVal); printf("Expresion: GE %d >= %d = %d\n", (yyvsp[-2].intVal), (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1437 "parser.tab.c"
+#line 1435 "parser.tab.c"
     break;
 
   case 32: /* expression: NOT factor  */
-#line 267 "parser.y"
+#line 259 "parser.y"
                              { (yyval.intVal) = !(yyvsp[0].intVal); printf("Expression: NOT !%d = %d\n", (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1443 "parser.tab.c"
+#line 1441 "parser.tab.c"
     break;
 
   case 34: /* term: term MUL factor  */
-#line 275 "parser.y"
+#line 267 "parser.y"
                             { (yyval.intVal) = (yyvsp[-2].intVal) * (yyvsp[0].intVal); }
-#line 1449 "parser.tab.c"
+#line 1447 "parser.tab.c"
     break;
 
   case 35: /* term: term DIV factor  */
-#line 276 "parser.y"
+#line 268 "parser.y"
                             {
         if ((yyvsp[0].intVal) == 0) {
             yyerror("Dělení nulou!");
@@ -1458,37 +1456,36 @@ yyreduce:
             (yyval.intVal) = (yyvsp[-2].intVal) / (yyvsp[0].intVal);
         }
     }
-#line 1462 "parser.tab.c"
+#line 1460 "parser.tab.c"
     break;
 
   case 36: /* factor: INT  */
-#line 287 "parser.y"
+#line 279 "parser.y"
                              { (yyval.intVal) = (yyvsp[0].intVal); }
-#line 1468 "parser.tab.c"
+#line 1466 "parser.tab.c"
     break;
 
   case 37: /* factor: STRING  */
-#line 288 "parser.y"
+#line 280 "parser.y"
                              { (yyval.intVal) = 0; }
-#line 1474 "parser.tab.c"
+#line 1472 "parser.tab.c"
     break;
 
   case 38: /* factor: CHAR  */
-#line 289 "parser.y"
+#line 281 "parser.y"
                              { (yyval.intVal) = (yyvsp[0].charVal); }
-#line 1480 "parser.tab.c"
+#line 1478 "parser.tab.c"
     break;
 
   case 39: /* factor: BOOLEAN  */
-#line 290 "parser.y"
+#line 282 "parser.y"
                              { (yyval.intVal) = (yyvsp[0].booleanVal); }
-#line 1486 "parser.tab.c"
+#line 1484 "parser.tab.c"
     break;
 
   case 40: /* factor: ID  */
-#line 291 "parser.y"
+#line 283 "parser.y"
        {
-        /* najdi proměnnou v tabulce a vrať buď intValue, nebo boolValue */
         int found = 0;
         for (int i = 0; i < varCount; i++) {
             if (strcmp(varTable[i].name, (yyvsp[0].strVal)) == 0) {
@@ -1505,35 +1502,35 @@ yyreduce:
             (yyval.intVal) = 0;
         }
     }
-#line 1509 "parser.tab.c"
+#line 1506 "parser.tab.c"
     break;
 
   case 41: /* factor: LPAREN expression RPAREN  */
-#line 311 "parser.y"
+#line 302 "parser.y"
                                { (yyval.intVal) = (yyvsp[-1].intVal); }
-#line 1515 "parser.tab.c"
+#line 1512 "parser.tab.c"
     break;
 
   case 42: /* factor: NEGATE factor  */
-#line 312 "parser.y"
+#line 303 "parser.y"
                              { (yyval.intVal) = -(yyvsp[0].intVal); }
-#line 1521 "parser.tab.c"
+#line 1518 "parser.tab.c"
     break;
 
   case 43: /* factor: ROUND factor  */
-#line 313 "parser.y"
+#line 304 "parser.y"
                              { (yyval.intVal) = (int)round((double)(yyvsp[0].intVal)); }
-#line 1527 "parser.tab.c"
+#line 1524 "parser.tab.c"
     break;
 
   case 44: /* factor: NOT factor  */
-#line 314 "parser.y"
+#line 305 "parser.y"
                              { (yyval.intVal) = !(yyvsp[0].intVal); printf("Expression: NOT !%d = %d\n", (yyvsp[0].intVal), (yyval.intVal)); }
-#line 1533 "parser.tab.c"
+#line 1530 "parser.tab.c"
     break;
 
 
-#line 1537 "parser.tab.c"
+#line 1534 "parser.tab.c"
 
       default: break;
     }
@@ -1726,7 +1723,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 324 "parser.y"
+#line 315 "parser.y"
 
 
 void yyerror(const char* s) {
@@ -1734,7 +1731,6 @@ void yyerror(const char* s) {
 }
 
 void executeStatements() {
-    // Tělo zkopírováno ručně (špatné, ale pro test to projde)
     printf("Tisk: Aktuální věk:\n");
     printf("Tisk: %d\n", getIntVariable("vek"));
     setVariable("vek", getIntVariable("vek") + 1, TYPE_INT);
@@ -1743,10 +1739,17 @@ void executeStatements() {
 
 
 int main(void){
-    // na začátku platí, že vykonáváme
+    FILE *output = freopen("vystup.txt", "w", stdout);
+    if (!output) {
+        fprintf(stderr, "Nepodařilo se otevřít soubor pro výstup.\n");
+        return 1;
+    }
+
     execTop = 0;
     printf("Zadej program:\n");
-    if(yyparse()==0)
+    if (yyparse() == 0)
         printf("Parsing was successful!\n");
+
+    fclose(output);
     return 0;
 }

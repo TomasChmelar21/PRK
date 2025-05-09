@@ -327,9 +327,17 @@ void executeStatements() {
 
 
 int main(void){
+    FILE *output = freopen("vystup.txt", "w", stdout);
+    if (!output) {
+        fprintf(stderr, "Nepodařilo se otevřít soubor pro výstup.\n");
+        return 1;
+    }
+
     execTop = 0;
     printf("Zadej program:\n");
-    if(yyparse()==0)
+    if (yyparse() == 0)
         printf("Parsing was successful!\n");
+
+    fclose(output);
     return 0;
 }
